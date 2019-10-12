@@ -1,0 +1,87 @@
+#include <stdio.h>  //7章11t
+#define YANG 2.05
+#define TIAN 1.15
+#define HU 1.09
+int main(int argc,const char * argv[])
+{
+    double bang = 0.0;
+    double cost = 0.0;
+    double totalcost = 0.0;
+    double discount = 0.0;
+    double yunfei = 0.0;
+    double yangji,tiancai,huluobo;
+
+    char ch;
+    printf("a)输入洋蓟的磅数。     b）输入甜菜的磅数。\nc)输入胡萝卜的磅数。   q）quit\n");
+
+    while ((ch=getchar()) != 'q')
+    {
+        if(ch == '\n')
+        {
+            continue;
+        }
+        switch(ch)
+        {
+            case 'a':
+                printf("输入洋蓟的磅数：\n");
+                scanf("%lf",&yangji);
+                bang += yangji;
+                cost += yangji*YANG;
+                printf("\n\na)输入洋蓟的磅数。     b）输入甜菜的磅数。\nc)输入胡萝卜的磅数。   q）quit\n");
+                break;
+
+            case 'b':
+                printf("输入甜菜的磅数：");
+                scanf("%lf",&tiancai);
+                bang += tiancai;
+                cost += tiancai*TIAN;
+                printf("\n\na)输入洋蓟的磅数。     b）输入甜菜的磅数。\nc)输入胡萝卜的磅数。   q）quit\n");
+                break;
+
+            case 'c':
+                printf("输入胡萝卜的磅数：");
+                scanf("%lf",&huluobo);
+                bang += huluobo;
+                cost += huluobo*HU;
+                printf("\n\na)输入洋蓟的磅数。     b）输入甜菜的磅数。\nc)输入胡萝卜的磅数。   q）quit\n");
+                break;
+            default:
+                printf("Enter a right charactor\n");
+        }
+        while(getchar() !='\n')
+        {
+            continue;
+        }
+
+    }
+
+    if(cost<=100)
+    {
+        discount = cost*0.05;
+    }
+
+    if(bang<=5)
+    {
+        yunfei = 6.5;
+    }
+    else if(bang<20)
+    {
+        yunfei = 14.0;
+    }
+    else
+    {
+        yunfei = 14.0 +(bang - 20.0)*0.5;
+    }
+
+    totalcost = cost + yunfei - discount;
+    printf("洋蓟的售价为:%f,甜菜的售价为:%f,胡萝卜的售价为:%f\n",YANG,TIAN,HU);
+    printf("订购的重量为:%.2f\n",bang);
+    printf("订购的蔬菜费用:%.2f\n",cost);
+    printf("订单总费用:%.2f\n",totalcost);
+    printf("折扣金额减免为:%.2f\n",discount);
+    printf("运费以及包装费为%.2f\n",yunfei);
+    printf("所有费用总和:%.2f\n",totalcost);
+
+    return 0 ;
+
+}
